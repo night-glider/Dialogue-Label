@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=3 uid="uid://bunjl5eiabo57"]
+
+[ext_resource type="Script" path="res://example/test.gd" id="1_wqiyx"]
+[ext_resource type="Script" path="res://addons/dialogue_label/src/DialogueLabel.gd" id="2_xrla4"]
+[ext_resource type="AudioStream" uid="uid://c2kxmljtjfbps" path="res://example/click1.wav" id="3_2mxwt"]
+[ext_resource type="AudioStream" uid="uid://buu7scy2rj570" path="res://example/click2.wav" id="4_emk7p"]
+
+[node name="test" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wqiyx")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.4
+anchor_right = 0.6
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[color=red]warning![/color]
+[snd 0]use [i][b]square brackets[/b][/i] only for bbcode tags
+[inst 5]12345
+test
+[snd 1][spd 2]veryyyyyyyyyyyyyyyyyyy fast text
+[spd 0.1]slower text
+[spd 0.01]very slow"
+
+[node name="DialogueLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.4
+anchor_top = 0.5
+anchor_right = 0.6
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scroll_active = false
+scroll_following = true
+script = ExtResource("2_xrla4")
+messages = Array[String](["[color=red]warning![/color]
+[snd 0]use [i][b]square brackets[/b][/i] only for bbcode tags
+[inst 5]12345
+test
+[snd 1][spd 2]veryyyyyyyyyyyyyyyyyyy fast text
+[spd 0.1]slower text
+[spd 0.01]very slow"])
+sound_files = Array[AudioStream]([ExtResource("3_2mxwt"), ExtResource("4_emk7p")])
+text_speed = 0.1
