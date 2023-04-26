@@ -48,7 +48,7 @@ messages = Array[String](["[color=red]warning![/color]
 [inst 5]12345
 test
 [snd 1][spd 2]veryyyyyyyyyyyyyyyyyyy fast text
-[spd 0.1]slower text
+[spd 0.1]slower text[snd -1]
 [spd 0.01]very slow"])
 sound_files = Array[AudioStream]([ExtResource("3_2mxwt"), ExtResource("4_emk7p")])
 text_speed = 0.1

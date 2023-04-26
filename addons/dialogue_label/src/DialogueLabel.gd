@@ -140,7 +140,11 @@ func _advance_text():
 		elif tags[0]["name"] == "spd":
 			text_speed = float(tags[0]["value"])
 		elif tags[0]["name"] == "snd":
-			audio_player.stream = sound_files[ int(tags[0]["value"]) ]
+			var sound_index = int(tags[0]["value"])
+			if sound_index < 0:
+				audio_player.stream = null
+			else:
+				audio_player.stream = sound_files[ sound_index ]
 		tags.pop_front()
 
 func _process(delta):
