@@ -126,7 +126,13 @@ grow_vertical = 2
 theme_override_fonts/normal_font = ExtResource("2_jabba")
 theme_override_fonts/bold_font = ExtResource("3_s50rr")
 theme_override_fonts/mono_font = ExtResource("2_jabba")
-text = "test"
+text = "Hello! i am a simple RichTextLabel extension for displaying dialogues!
+
+I support custom tags:
+[spd 1.5] - change text speed to 1.5 symbols/frame
+[inst 5]  - instantly display next 5 symbols
+[snd 0]   - choose first sound bite in sound bite list
+[wait 60] - delay for 60 frames"
 scroll_active = false
 scroll_following = true
 script = ExtResource("2_tg4u7")
