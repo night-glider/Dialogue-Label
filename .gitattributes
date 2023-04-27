@@ -9,3 +9,4 @@
 /addons    !export-ignore
 /example   !export-ignore
 /addons/** !export-ignore
+/example/**   !export-ignore
