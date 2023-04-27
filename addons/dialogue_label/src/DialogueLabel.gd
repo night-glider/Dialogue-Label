@@ -16,6 +16,7 @@ var message_id = 0
 
 var chars_to_display = 0.0
 var tags = []
+var delay_frames = 0
 var audio_player = AudioStreamPlayer.new()
 
 func _init():
@@ -23,8 +24,10 @@ func _init():
 	install_effect(InstantTag.new())
 	install_effect(SpeedTag.new())
 	install_effect(SoundTag.new())
+	install_effect(WaitTag.new())
 
 func _ready():
+	text = ''
 	add_child(audio_player)
 	
 	if messages.is_empty():
@@ -82,7 +85,7 @@ func _parse_custom_tags(str:String)->Array:
 		if inside_tag:
 			if char == "]":
 				inside_tag = false
-				if current_tag in ["inst", "spd", "snd"]:
+				if current_tag in ["inst", "spd", "snd", "wait"]:
 					result.append( {
 						"name":current_tag, 
 						"pos": current_pos,
@@ -93,7 +96,7 @@ func _parse_custom_tags(str:String)->Array:
 				continue
 			if char == " ":
 				inside_tag_name = false
-				if current_tag in ["inst", "spd", "snd"]:
+				if current_tag in ["inst", "spd", "snd", "wait"]:
 					inside_tag_value = true
 				
 				continue
@@ -118,8 +121,14 @@ func _parse_custom_tags(str:String)->Array:
 func _advance_text():
 	if not active:
 		return
+		
+	if delay_frames>0:
+		delay_frames -=1
+		return
+		
 	if visible_ratio >= 1:
 		active = false
+		emit_signal("message_finished")
 		return
 	
 	
@@ -140,11 +149,11 @@ func _advance_text():
 		elif tags[0]["name"] == "spd":
 			text_speed = float(tags[0]["value"])
 		elif tags[0]["name"] == "snd":
-			var sound_index = int(tags[0]["value"])
-			if sound_index < 0:
-				audio_player.stream = null
-			else:
-				audio_player.stream = sound_files[ sound_index ]
+			audio_player.stream = sound_files[ int(tags[0]["value"]) ]
+		elif  tags[0]["name"] == "wait":
+			delay_frames = int(tags[0]["value"])
+			#await get_tree().create_timer(tags[0]["value"]).timeout
+			pass
 		tags.pop_front()
 
 func _process(delta):

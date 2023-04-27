@@ -1,0 +1,297 @@
+[gd_scene load_steps=12 format=3 uid="uid://bng50i7qea71q"]
+
+[ext_resource type="Script" path="res://example/example.gd" id="1_3275u"]
+[ext_resource type="FontFile" uid="uid://b8gr7203824nv" path="res://example/Disket-Mono-Regular.ttf" id="2_jabba"]
+[ext_resource type="Script" path="res://addons/dialogue_label/src/DialogueLabel.gd" id="2_tg4u7"]
+[ext_resource type="FontFile" uid="uid://c0umsxoxgkbdb" path="res://example/Disket-Mono-Bold.ttf" id="3_s50rr"]
+[ext_resource type="AudioStream" uid="uid://bbdomg6eojiah" path="res://example/click1.wav" id="5_uesmh"]
+[ext_resource type="AudioStream" uid="uid://qmtaq304uq1e" path="res://example/click2.wav" id="6_hj3s0"]
+
+[sub_resource type="Animation" id="Animation_v07il"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_wea8y"]
+resource_name = "changeColor"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0.27451, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"startDialogue"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_wlvj6"]
+resource_name = "changeColorBack"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Color(0, 0, 0.27451, 1), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_y6s58"]
+resource_name = "changeColor_2"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0.27451, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gfyg2"]
+_data = {
+"RESET": SubResource("Animation_v07il"),
+"changeColor": SubResource("Animation_wea8y"),
+"changeColorBack": SubResource("Animation_wlvj6"),
+"changeColor_2": SubResource("Animation_y6s58")
+}
+
+[node name="Example" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3275u")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_gfyg2")
+}
+
+[node name="Dialogue" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("2_jabba")
+theme_override_fonts/bold_font = ExtResource("3_s50rr")
+theme_override_fonts/mono_font = ExtResource("2_jabba")
+text = "test"
+scroll_active = false
+scroll_following = true
+script = ExtResource("2_tg4u7")
+messages = Array[String](["[snd 0][spd 0.3]///initialization basic test.com... [wait 60] ", "[inst 4]done[wait 60] ", "[b]Press ENTER to execute test...[/b]", "Test 1: [wait 60] Rendering [wait 60] 
+
+We have recieved image file from [inst 10][b]//username:[/b]tester
+Our REC system must render image information with ease
+
+intiallization... [wait 120]
+[code][spd 12]                                                                                                    
+                                                                                                    
+                                                                                                    
+                                               .  ..                                                
+                                          .---+++**=+=+++=:.                                        
+                                     :-=++***********#####**+--:                                    
+                                 .-=*****######################**+-:                                
+                               ++*#################################**=.                             
+                            .:-*#*###**#####**##*******###############*=:                           
+                          :=*************###******#*****#######****#####*+-                         
+                        .-+*##*****+++++***###***********####****+++**####*+.                       
+                       -+**##***++==---====++***+++********+++======++**###*=.                      
+                      -********+=---------------=--=++++++==---:::---=+***#**+:                     
+                     .=*******=---------::::::::::::::::::::::::::::---=******+:                    
+                     =+******=--------:::::::::::::::::::::::::::::::---=*****+=.                   
+                    .+******+------::::::::::::::........:::::::::::::---+*#***+.                   
+                    .+*****+=----:::::::::::::::..........:::::::::::::--=*****+=                   
+                    .++****+=---:::::::::::::::...........::::::::::::::-=+****+-                   
+                    .+*****+----:::::::::::::::...........:::::::::::::::-+****+-                   
+                     +*****=----::::::::::::::................::::::::::--=*##**-                   
+                     =*****=----:--=++++++==-:::..........:::--======-:::--*##**-                   
+                     .*****-----=++++*+******+==-:::..::-==+*******+++=----*##*=.                   
+                     -*#*#+---=+++++++===++++=+===-:::--=+++++++==-----==--+***:                    
+                     .***+----*#*=---------::...:-+*=-*+-:....::-====++++*+++*+.                    
+                     :+=**+---=*+======+++----:::-#=--+*::.:..-=+=-====--+#++**=                    
+                     .++**=::--++====--==-::::::-++:..:*-::::::--:-------+=:==+=                    
+                     :==+*=:::--+-----::::::::-:=*-::::=+:::::::::::::::-+::=--:                    
+                     .--++-::::--======-----===++---:::-==--::::::::::--=-::--::                    
+                     .--++=:::::-------------------::::::----=========--::::--::                    
+                     .--=+=-::::::::::::::::::----::..::::-:::::::::::::::::-:::                    
+                      ----=-::::-:::::::::::.:---==----==-:::.:.:::::::::::::::.                    
+                      ::::---::::::::::::::.::===++===-=+=--:...:::::::::::::::                     
+                       .:----::-::::::::::::::----:::::::--:::::::::::::::::..                      
+                            .:--:::::::::::::::--:::::::::::::::::::::::::.                         
+                             :---::::::::::::::------::--:::::::::::::::::                          
+                              ------:::::--::--=====++++===---:::::::::::.                          
+                              -----------:--=+++===========++=--:::::::::                           
+                              ----------------====----------------::::::                            
+                              :--------------------====-------------:-:.                            
+                              :-==------------------------------------:                             
+                              :-=====-------------:::::::::::---------:                             
+                              .--========---------::::::::::-----====-:                             
+                              :--===+++++===------------------======--:                             
+                           .:-----===+++++++++==============++++===----===-.                        
+                       .-+++=-------===+++++***************+++===---------=++==-:                   
+                  .:==****+-----------=====+++*********++++====-------------+++***+-.               
+              ..:+****#***--------------======+++++++++=====----------------=*****+++++=-.          
+          .-++***###******=---------------===============-------------------=*****+***++***+-:      
+        :++**+*####*##****+---------------=============---------------------********==-=*+*****+=:. 
+    :-+****##*##*#**##*###*+----------------============-------------------+********+++=+**********+
+-=+******######***+*##****##+-----------------========-----------------::-+*************************
+********#########*####***#*##+----------------------------------------::-*#**************++****##***
++*+****#**#######**#+##***####*=::----------------------------------:::=***#*****##****#****####*###
+**********######*#####****######*-::::-------------------::::---:::::=*#***#*##**=***##***####*###**
+*********#**####*#####**###*#####*+=:::::::::::::-----:::::::::::::=**###******+*##+##****###**#**##
+*****+**###*+#**###########******##**+=-:::::::::::::::::::::::-=+*#########=*#########***######**##
+#**#****#####**##########*##****+*######**++=--::::::::--==++*###########*##########**##**#######*##
+####***+########################******#######**###**############****######**#################**##*##
+##*****############################***##########################***=**+****+*####***####**###**#####
+##*##**####***###############*#######+*##########*#######**#####*************-*#****###***--#*######
+#*###*######****#*+############*######*#######*###########**##**********#******=-*#####*##**########
+****#*:*###**#*#*+-*#######**###*##############*#**#######=##***++****====****++=*##***#########*###
+****####--#**#+****########*############**####**##*=*#*:*######**++***===+*******########*#####***#*
+##########***********####################*###*################***#**###*********###*##******###*#*##
+***######*******#****#*##########**######*##*=###*###*#####**#*********#******########*+****########
+#**#######********##****###**######*############*####*#*###*#####*#********=*######*######****###*** [spd 0.3] [wait 60]  
+
+done...[wait 60] integrity[wait 60] [inst 3]78%[wait 60]
+
+pass[wait 60]
+
+ 
+
+ 
+
+ ", "[b]Press ENTER to execute next test...[/b]", "Test 2: [wait 60] Encryption [wait 60] 
+
+[inst 10][b]//username:[/b]tester1 should not get the information you want to hide from wrong people.
+REC system offers a \"///enc\" method that encrypts a certain part of the message.
+[b]MUST CONFIGURE THE METHOD FIRST[/b]
+
+using a template...
+
+[b]<begin of encryption>[/b]
+Test Log: Testing \"///enc\" method
+
+Date: [inst 6][b]///enc[/b] cf0218e1f5a2811fa0389211311d4baf
+Tester: [inst 6][b]///enc[/b] 53de8d64cc91d9f3dde88f4ab32444fd
+
+Objective:
+[inst 6][b]///enc[/b] 15c9fa2acc70f12a169205957bdeb835
+
+Installation and Setup
+-{REDACTED}
+-{REDACTED}
+-{REDACTED}
+-Security
+-{REDACTED}
+Testing Procedures and Results:
+
+Installation and Setup:
+Procedure: [inst 6][b]///enc[/b] ee64e4c0470d43b93fea2a56412b0b93.
+Results: [inst 6][b]///enc[/b] 09a1ed2cb4eb736d7a04f3886bb708a4.
+
+{REDACTED}:
+Procedure: [inst 6][b]///enc[/b] fc0c90f27924dd9b3268e52aa0037dd9.
+Results: [inst 6][b]///enc[/b] ae428189c1aad2f03ba9e0e810b09145.
+
+{REDACTED}:
+Procedure: [inst 6][b]///enc[/b] f559046848cc03d37d0927ce922e8ba0.
+Results: [inst 6][b]///enc[/b] 88d7b2f5b3b107340c5e454c7a34fc96.
+
+{REDACTED}:
+Procedure: [inst 6][b]///enc[/b] 0966219c61d98452d6b903f28d9dde35.
+Results: [inst 6][b]///enc[/b] 779864aca77b3cac563da59ac1d65d13.
+
+Security:
+Procedure: The security features of the REC system will be tested.
+Results: The security features were robust and effective. The REC system provided various security measures such as encryption, {REDACTED}, and {REDACTED}.
+
+{REDACTED}:
+Procedure: [inst 6][b]///enc[/b] 0df08012c92cd36ce997ec4a7c30a394.
+Results: [inst 6][b]///enc[/b] f976d91f316e157185f32b5e1bd54e60.
+
+Conclusion:
+{REDACTED}, [inst 6][b]///enc[/b] 5a0310df9ab8928777b81a87ccb80cf4
+[b]<end of encryption>[/b] [wait 120] 
+
+[b]pass[/b] [wait 120] 
+", "[b]Press ENTER to execute last test...[/b]", "Test 3: [wait 60] Communication [wait 60] 
+
+Say \"hello\" to [inst 10]//username:tester
+Our REC system can transfer messages from user-to-user
+
+intiallization... [wait 120]
+
+<start of dialogue>
+
+/you:Hello! [wait 360]
+...[inst 10]//username:tester is typing...[wait 360]", "[snd 1][spd 20][color=red]ItCc0Ysg0LfQsNCy0YLRgNCw0LrQsNC70Lgg0LIg0LTQvtC80LUg0L3QsCDQn9C10LnQv9C10YAt0YHRgtGA0LjRgiwg0KLQsNC50LvQtdGAINGB0LrQsNC30LDQuywg0L/RgNC10LTRgdGC0LDQstGMINGB0LXQsdGPINCy0YvRgNCw0YnQuNCy0LDRjtGJ0LjQvCDRgNC10LTQuNGB0LrRgyDQuCDQutCw0YDRgtC+0YjQutGDINC90LAg0L/Rj9GC0L3QsNC00YbQsNGC0L7QuSDQu9GD0L3QutC1INC30LDQsdGL0YLQvtCz0L4g0L/QvtC70Y8g0LTQu9GPINCz0L7Qu9GM0YTQsC4K0KLRiyDQvtGF0L7RgtC40YjRjNGB0Y8g0L3QsCDQu9C+0YHRjyDQstC+INCy0LvQsNC20L3Ri9GFINC70LXRgdCw0YUg0L3QsCDRgdC60LvQvtC90LDRhSDQutCw0L3RjNC+0L3QsCDRgyDRgNGD0LjQvSDQoNC+0LrRhNC10LvQu9C10YAt0YbQtdC90YLRgNCwINC4INCy0YvQutCw0L/Ri9Cy0LDQtdGI0Ywg0YDQsNC60YPRiNC60Lgg0YDRj9C00L7QvCDRgSDQutCw0YDQutCw0YHQvtC8INCa0L7RgdC80LjRh9C10YHQutC+0Lkg0JjQs9C70YssINC90LDQutC70L7QvdC40LLRiNC10LnRgdGPINC/0L7QtCDRg9Cz0LvQvtC8INCyINGB0L7RgNC+0Log0L/Rj9GC0Ywg0LPRgNCw0LTRg9GB0L7Qsi4g0JzRiyDRgNCw0YHQutGA0LDRgdC40Lwg0L3QtdCx0L7RgdC60YDRkdCx0Ysg0L7Qs9GA0L7QvNC90YvQvNC4INC70LjRhtCw0LzQuCDQvdCw0YjQuNGFINGC0L7RgtC10LzQvtCyINC4INC30LvRi9GFINCx0L7QttC10YHRgtCyLCDQuCDQutCw0LbQtNGL0Lkg0LLQtdGH0LXRgCDRgtC+LCDRh9GC0L4g0L7RgdGC0LDQu9C+0YHRjCDQvtGCINGH0LXQu9C+0LLQtdGH0LXRgdGC0LLQsCwg0LHRg9C00LXRgiDQvtGC0YHRgtGD0L/QsNGC0Ywg0LIg0L/Rg9GB0YLRi9C1INC30L7QvtC/0LDRgNC60Lgg0Lgg0LfQsNC60YDRi9Cy0LDRgtGMINGB0LXQsdGPINCyINC60LvQtdGC0LrQsNGFLCDRh9GC0L7QsdGLINC30LDRidC40YLQuNGC0YzRgdGPINC+0YIg0LzQtdC00LLQtdC00LXQuSwg0Lgg0LHQvtC70YzRiNC40YUg0LrQvtGI0LXQuiwg0Lgg0LLQvtC70LrQvtCyLCDQutC+0YLQvtGA0YvQtSDQv9C+INC90L7Rh9Cw0Lwg0L/RgNC+0YXQvtC00Y/RgiDQvNC40LzQviDQuCDRgdC80L7RgtGA0Y/RgiDQvdCwINC90LDRgSDRgdC60LLQvtC30Ywg0L/RgNGD0YLRjNGPINGA0LXRiNGR0YLQutC4INGBINGC0L7QuSDRgdGC0L7RgNC+0L3Riy4KLSDQn9C10YDQtdGA0LDQsdC+0YLQutCwINCy0YLQvtGA0YHRi9GA0YzRjyDQuCDQvtCz0YDQsNC90LjRh9C10L3QuNC1INGB0LrQvtGA0L7RgdGC0LggLSDRjdGC0L4g0LTQtdGA0YzQvNC+LCAtINGB0LrQsNC30LDQuyDQotCw0LnQu9C10YAuIC0g0JHRg9C00YLQviDQutGC0L4t0YLQviDQvdC10L7QttC40LTQsNC90L3QviDQsdGA0L7RgdCw0LXRgiDQutGD0YDQuNGC0Ywg0L3QsCDRgdC80LXRgNGC0L3QvtC8INC+0LTRgNC1LgrQrdGC0L4g0L/RgNC+0LXQutGCICLQoNCw0LfQs9GA0L7QvCIsINC60L7RgtC+0YDRi9C5INGB0L7QsdC40YDQsNC10YLRgdGPINGB0L/QsNGB0YLQuCDQvNC40YAuINCa0YPQu9GM0YLRg9GA0L3Ri9C5INC70LXQtNC90LjQutC+0LLRi9C5INC/0LXRgNC40L7QtC4g0J/RgNC10LbQtNC10LLRgNC10LzQtdC90L3QviDQstGL0LfQstCw0L3QvdGL0Lkg0YLRkdC80L3Ri9C5INCy0LXQui4g0J/RgNC+0LXQutGCICLQoNCw0LfQs9GA0L7QvCIg0LfQsNGB0YLQsNCy0LjRgiDQs9GD0LzQsNC90LjQt9C8INC30LDRgdC90YPRgtGMINC40LvQuCDRgdC+0LfQtNCw0YHRgiDQtNC+0YHRgtCw0YLQvtGH0L3Rg9GOINGA0LXQvNC40YHRgdC40Y4sINGH0YLQvtCx0Ysg0LLQvtGB0YHRgtCw0L3QvtCy0LjRgtGMINCX0LXQvNC70Y4uCi0g0KLRiyDQv9C+0LTRgNCw0LLQvdC40LLQsNC10YjRjCDQsNC90LDRgNGF0LjRjiwgLSDQs9C+0LLQvtGA0LjRgiDQotCw0LnQu9C10YAuIC0g0J3Rgywg0YLRiyDQv9C+0L3Rj9C7LgrQn9C+0LTQvtCx0L3QviDRgtC+0LzRgywg0YfRgtC+INCx0L7QudGG0L7QstGB0LrQuNC5INC60LvRg9CxINC00LXQu9Cw0LXRgiDRgSDQutC70LXRgNC60LDQvNC4INC4INC60LDRgdGB0LjRgNCw0LzQuCwg0L/RgNC+0LXQutGCICLQoNCw0LfQs9GA0L7QvCIg0YHQu9C+0LzQuNGCINGG0LjQstC40LvQuNC30LDRhtC40Y4sINGC0LDQuiDRh9GC0L4g0LzRiyDRgdC80L7QttC10Lwg0YHQtNC10LvQsNGC0Ywg0LjQtyDQvdCw0YjQtdCz0L4g0LzQuNGA0LAg0L3QtdGH0YLQviDQu9GD0YfRiNC10LUuCi0g0J/RgNC10LTRgdGC0LDQstGMLCAtINCz0L7QstC+0YDQuNGCINCi0LDQudC70LXRgCwgLSDQutCw0Log0LvQvtGB0Ywg0L/RgNC+0LHQuNGA0LDQtdGC0YHRjyDQt9CwINC+0LrQvdCw0LzQuCDRgdGD0L/QtdGA0LzQsNGA0LrQtdGC0LAg0Lgg0LzQtdC2INCy0L7QvdGP0Y7RidC40YUg0LrQvtGA0L7QsdC+0Log0YEg0L/RgNC10LvQtdGB0YLQvdGL0LzQuCDQs9C90LjRjtGJ0LjQvNC4INC/0LvQsNGC0YzRj9C80Lgg0Lgg0YTRgNCw0LrQsNC80Lgg0L3QsCDQstC10YjQsNC70LrQsNGFOyDRgtGLINCyINC60L7QttCw0L3QvtC5INC+0LTQtdC20LTQtSwg0L7QtNC90L7QuSDQtNC+INC60L7QvdGG0LAg0LbQuNC30L3QuDsg0Lgg0L/QviDQu9C40LDQvdC1INGC0L7Qu9GJ0LjQvdC+0Lkg0YEg0LfQsNC/0Y/RgdGC0YzQtSDRgtGLINCy0LfQsdC40YDQsNC10YjRjNGB0Y8g0L3QsCDQodC40YDQty3RgtCw0YPRjdGALiDQlNC20LXQuiDQuCDQkdC+0LHQvtCy0YvQuSDRgdGC0LXQsdC10LvRjCwg0YLRiyDQv9GA0L7QtNC40YDQsNC10YjRjNGB0Y8g0YHQutCy0L7Qt9GMINCx0LDQu9C00LDRhdC40L0g0LLQu9Cw0LbQvdGL0YUg0LLQtdGA0YjQuNC9INC00LXRgNC10LLRjNC10LIsINC4INCy0L7Qt9C00YPRhSDQsdGD0LTQtdGCINGC0LDQuiDRh9C40YHRgiwg0YfRgtC+INGC0Ysg0YPQstC40LTQuNGI0Ywg0LrRgNC+0YXQvtGC0L3Ri9C1INGE0LjQs9GD0YDQutC4LCDQvNC+0LvQvtGC0Y/RidC40LUg0LfQtdGA0L3QviDQuCDQstGL0LrQu9Cw0LTRi9Cy0LDRjtGJ0LjQtSDQv9C+0LvQvtGB0LrQuCDQvNGP0YHQsCDQstGP0LvQuNGC0YzRgdGPINC90LAg0L/Rg9GB0YLQvtC5INC30LDQsdGA0L7RiNC10L3QvdC+0Lkg0LLQtdGC0LrQtSDQvdC40LrQvtC80YMg0L3QtSDQvdGD0LbQvdC+0Lkg0YHRg9C/0LXRgNCw0LLRgtC+0LzQsNCz0LjRgdGC0YDQsNC70LgsINGA0LDRgdGC0Y/QvdGD0LLRiNC10LnRgdGPINC90LAg0LLQvtGB0LXQvNGMINC/0L7Qu9C+0YEg0LIg0YjQuNGA0LjQvdGDINC4INC/0L4t0LDQstCz0YPRgdGC0L7QstGB0LrQuCDQttCw0YDQutC+0Lkg0L3QsCDRgtGL0YHRj9GH0Lgg0Lgg0YLRi9GB0Y/Rh9C4INC80LjQu9GMLiI=ItCc0Ysg0LfQsNCy0YLRgNCw0LrQsNC70Lgg0LIg0LTQvtC80LUg0L3QsCDQn9C10LnQv9C10YAt0YHRgtGA0LjRgiwg0KLQsNC50LvQtdGAINGB0LrQsNC30LDQuywg0L/RgNC10LTRgdGC0LDQstGMINGB0LXQsdGPINCy0YvRgNCw0YnQuNCy0LDRjtGJ0LjQvCDRgNC10LTQuNGB0LrRgyDQuCDQutCw0YDRgtC+0YjQutGDINC90LAg0L/Rj9GC0L3QsNC00YbQsNGC0L7QuSDQu9GD0L3QutC1INC30LDQsdGL0YLQvtCz0L4g0L/QvtC70Y8g0LTQu9GPINCz0L7Qu9GM0YTQsC4K0KLRiyDQvtGF0L7RgtC40YjRjNGB0Y8g0L3QsCDQu9C+0YHRjyDQstC+INCy0LvQsNC20L3Ri9GFINC70LXRgdCw0YUg0L3QsCDRgdC60LvQvtC90LDRhSDQutCw0L3RjNC+0L3QsCDRgyDRgNGD0LjQvSDQoNC+0LrRhNC10LvQu9C10YAt0YbQtdC90YLRgNCwINC4INCy0YvQutCw0L/Ri9Cy0LDQtdGI0Ywg0YDQsNC60YPRiNC60Lgg0YDRj9C00L7QvCDRgSDQutCw0YDQutCw0YHQvtC8INCa0L7RgdC80LjRh9C10YHQutC+0Lkg0JjQs9C70YssINC90LDQutC70L7QvdC40LLRiNC10LnRgdGPINC/0L7QtCDRg9Cz0LvQvtC8INCyINGB0L7RgNC+0Log0L/Rj9GC0Ywg0LPRgNCw0LTRg9GB0L7Qsi4g0JzRiyDRgNCw0YHQutGA0LDRgdC40Lwg0L3QtdCx0L7RgdC60YDRkdCx0Ysg0L7Qs9GA0L7QvNC90YvQvNC4INC70LjRhtCw0LzQuCDQvdCw0YjQuNGFINGC0L7RgtC10LzQvtCyINC4INC30LvRi9GFINCx0L7QttC10YHRgtCyLCDQuCDQutCw0LbQtNGL0Lkg0LLQtdGH0LXRgCDRgtC+LCDRh9GC0L4g0L7RgdGC0LDQu9C+0YHRjCDQvtGCINGH0LXQu9C+0LLQtdGH0LXRgdGC0LLQsCwg0LHRg9C00LXRgiDQvtGC0YHRgtGD0L/QsNGC0Ywg0LIg0L/Rg9GB0YLRi9C1INC30L7QvtC/0LDRgNC60Lgg0Lgg0LfQsNC60YDRi9Cy0LDRgtGMINGB0LXQsdGPINCyINC60LvQtdGC0LrQsNGFLCDRh9GC0L7QsdGLINC30LDRidC40YLQuNGC0YzRgdGPINC+0YIg0LzQtdC00LLQtdC00LXQuSwg0Lgg0LHQvtC70YzRiNC40YUg0LrQvtGI0LXQuiwg0Lgg0LLQvtC70LrQvtCyLCDQutC+0YLQvtGA0YvQtSDQv9C+INC90L7Rh9Cw0Lwg0L/RgNC+0YXQvtC00Y/RgiDQvNC40LzQviDQuCDRgdC80L7RgtGA0Y/RgiDQvdCwINC90LDRgSDRgdC60LLQvtC30Ywg0L/RgNGD0YLRjNGPINGA0LXRiNGR0YLQutC4INGBINGC0L7QuSDRgdGC0L7RgNC+0L3Riy4KLSDQn9C10YDQtdGA0LDQsdC+0YLQutCwINCy0YLQvtGA0YHRi9GA0YzRjyDQuCDQvtCz0YDQsNC90LjRh9C10L3QuNC1INGB0LrQvtGA0L7RgdGC0LggLSDRjdGC0L4g0LTQtdGA0YzQvNC+LCAtINGB0LrQsNC30LDQuyDQotCw0LnQu9C10YAuIC0g0JHRg9C00YLQviDQutGC0L4t0YLQviDQvdC10L7QttC40LTQsNC90L3QviDQsdGA0L7RgdCw0LXRgiDQutGD0YDQuNGC0Ywg0L3QsCDRgdC80LXRgNGC0L3QvtC8INC+0LTRgNC1LgrQrdGC0L4g0L/RgNC+0LXQutGCICLQoNCw0LfQs9GA0L7QvCIsINC60L7RgtC+0YDRi9C5INGB0L7QsdC40YDQsNC10YLRgdGPINGB0L/QsNGB0YLQuCDQvNC40YAuINCa0YPQu9GM0YLRg9GA0L3Ri9C5INC70LXQtNC90LjQutC+0LLRi9C5INC/0LXRgNC40L7QtC4g0J/RgNC10LbQtNC10LLRgNC10LzQtdC90L3QviDQstGL0LfQstCw0L3QvdGL0Lkg0YLRkdC80L3Ri9C5INCy0LXQui4g0J/RgNC+0LXQutGCICLQoNCw0LfQs9GA0L7QvCIg0LfQsNGB0YLQsNCy0LjRgiDQs9GD0LzQsNC90LjQt9C8INC30LDRgdC90YPRgtGMINC40LvQuCDRgdC+0LfQtNCw0YHRgiDQtNC+0YHRgtCw0YLQvtGH0L3Rg9GOINGA0LXQvNC40YHRgdC40Y4sINGH0YLQvtCx0Ysg0LLQvtGB0YHRgtCw0L3QvtCy0LjRgtGMINCX0LXQvNC70Y4uCi0g0KLRiyDQv9C+0LTRgNCw0LLQvdC40LLQsNC10YjRjCDQsNC90LDRgNGF0LjRjiwgLSDQs9C+0LLQvtGA0LjRgiDQotCw0LnQu9C10YAuIC0g0J3Rgywg0YLRiyDQv9C+0L3Rj9C7LgrQn9C+0LTQvtCx0L3QviDRgtC+0LzRgywg0YfRgtC+INCx0L7QudGG0L7QstGB0LrQuNC5INC60LvRg9CxINC00LXQu9Cw0LXRgiDRgSDQutC70LXRgNC60LDQvNC4INC4INC60LDRgdGB0LjRgNCw0LzQuCwg0L/RgNC+0LXQutGCICLQoNCw0LfQs9GA0L7QvCIg0YHQu9C+0LzQuNGCINGG0LjQstC40LvQuNC30LDRhtC40Y4sINGC0LDQuiDRh9GC0L4g0LzRiyDRgdC80L7QttC10Lwg0YHQtNC10LvQsNGC0Ywg0LjQtyDQvdCw0YjQtdCz0L4g0LzQuNGA0LAg0L3QtdGH0YLQviDQu9GD0YfRiNC10LUuCi0g0J/RgNC10LTRgdGC0LDQstGMLCAtINCz0L7QstC+0YDQuNGCINCi0LDQudC70LXRgCwgLSDQutCw0Log0LvQvtGB0Ywg0L/RgNC+0LHQuNGA0LDQtdGC0YHRjyDQt9CwINC+0LrQvdCw0LzQuCDRgdGD0L/QtdGA0LzQsNGA0LrQtdGC0LAg0Lgg0LzQtdC2INCy0L7QvdGP0Y7RidC40YUg0LrQvtGA0L7QsdC+0Log0YEg0L/RgNC10LvQtdGB0YLQvdGL0LzQuCDQs9C90LjRjtGJ0LjQvNC4INC/0LvQsNGC0YzRj9C80Lgg0Lgg0YTRgNCw0LrQsNC80Lgg0L3QsCDQstC10YjQsNC70LrQsNGFOyDRgtGLINCyINC60L7QttCw0L3QvtC5INC+0LTQtdC20LTQtSwg0L7QtNC90L7QuSDQtNC+INC60L7QvdGG0LAg0LbQuNC30L3QuDsg0Lgg0L/QviDQu9C40LDQvdC1INGC0L7Qu9GJ0LjQvdC+0Lkg0YEg0LfQsNC/0Y/RgdGC0YzQtSDRgtGLINCy0LfQsdC40YDQsNC10YjRjNGB0Y8g0L3QsCDQodC40YDQty3RgtCw0YPRjdGALiDQlNC20LXQuiDQuCDQkdC+0LHQvtCy0YvQuSDRgdGC0LXQsdC10LvRjCwg0YLRiyDQv9GA0L7QtNC40YDQsNC10YjRjNGB0Y8g0YHQutCy0L7Qt9GMINCx0LDQu9C00LDRhdC40L0g0LLQu9Cw0LbQvdGL0YUg0LLQtdGA0YjQuNC9INC00LXRgNC10LLRjNC10LIsINC4INCy0L7Qt9C00YPRhSDQsdGD0LTQtdGCINGC0LDQuiDRh9C40YHRgiwg0YfRgtC+INGC0Ysg0YPQstC40LTQuNGI0Ywg0LrRgNC+0YXQvtGC0L3Ri9C1INGE0LjQs9GD0YDQutC4LCDQvNC+0LvQvtGC0Y/RidC40LUg0LfQtdGA0L3QviDQuCDQstGL0LrQu9Cw0LTRi9Cy0LDRjtGJ0LjQtSDQv9C+0LvQvtGB0LrQuCDQvNGP0YHQsCDQstGP0LvQuNGC0YzRgdGPINC90LAg0L/Rg9GB0YLQvtC5INC30LDQsdGA0L7RiNC10L3QvdC+0Lkg0LLQtdGC0LrQtSDQvdC40LrQvtC80YMg0L3QtSDQvdGD0LbQvdC+0Lkg0YHRg9C/0LXRgNCw0LLRgtC+0LzQsNCz0LjRgdGC0YDQsNC70LgsINGA0LDRgdGC0Y/QvdGD0LLRiNC10LnRgdGPINC90LAg0LLQvtGB0LXQvNGMINC/0L7Qu9C+0YEg0LIg0YjQuNGA0LjQvdGDINC4INC/0L4t0LDQstCz0YPRgdGC0L7QstGB0LrQuCDQttCw0YDQutC+0Lkg0L3QsCDRgtGL0YHRj9GH0Lgg0Lgg0YLRi9GB0Y/Rh9C4INC80LjQu9GMLiI=[/color][spd 0.3]", "[inst 222]Test 3: Communication 
+
+Say \"hello\" to //username:tester
+Our REC system can transfer messages from user-to-user
+
+intiallization... 
+
+<start of dialogue>
+
+/you: Hello! 
+...//username:tester is typing...
+
+
+
+[wait 120] 
+ ", "[b]pass[/b] [wait 360] ", "///tests were completed successfully[wait 180] ", "[b]Press ENTER to shut down...[/b]"])
+sound_files = Array[AudioStream]([ExtResource("5_uesmh"), ExtResource("6_hj3s0")])
+
+[connection signal="dialogue_ended" from="Dialogue" to="." method="onDialogueEnded"]
+[connection signal="message_finished" from="Dialogue" to="." method="onMessageFinished"]
