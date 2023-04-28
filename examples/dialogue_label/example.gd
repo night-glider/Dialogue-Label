@@ -8,7 +8,7 @@ func _ready():
 	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	anim.play("changeColor")
 
-func _process(delta):
+func _process(_delta):
 	if dialogue.message_id in [2,4,6,12]:
 		if Input.is_action_just_pressed("ui_accept"):
 			dialogue.next_message()

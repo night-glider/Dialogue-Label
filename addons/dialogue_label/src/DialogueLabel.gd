@@ -61,7 +61,6 @@ func next_message():
 	
 	parse_bbcode(messages[message_id])
 	tags = _parse_custom_tags( get_parsed_text() )
-	#OS.alert( str(tags) )
 	parse_bbcode(tags.pop_front())
 	active = true
 	emit_signal("message_next")
@@ -131,8 +130,6 @@ func _advance_text():
 		emit_signal("message_finished")
 		return
 	
-	
-	
 	chars_to_display+=text_speed
 	if floor(chars_to_display) >= 1:
 		audio_player.play()
@@ -152,8 +149,6 @@ func _advance_text():
 			audio_player.stream = sound_files[ int(tags[0]["value"]) ]
 		elif  tags[0]["name"] == "wait":
 			delay_frames = int(tags[0]["value"])
-			#await get_tree().create_timer(tags[0]["value"]).timeout
-			pass
 		tags.pop_front()
 
 func _process(delta):
