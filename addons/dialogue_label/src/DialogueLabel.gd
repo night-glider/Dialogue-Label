@@ -21,10 +21,6 @@ var audio_player = AudioStreamPlayer.new()
 
 func _init():
 	bbcode_enabled = true
-	install_effect(InstantTag.new())
-	install_effect(SpeedTag.new())
-	install_effect(SoundTag.new())
-	install_effect(WaitTag.new())
 
 func _ready():
 	text = ''
@@ -63,9 +59,10 @@ func next_message():
 		emit_signal("dialogue_ended")
 		return
 	
-	
-	text = messages[message_id]
-	tags = _parse_custom_tags(text)
+	parse_bbcode(messages[message_id])
+	tags = _parse_custom_tags( get_parsed_text() )
+	#OS.alert( str(tags) )
+	parse_bbcode(tags.pop_front())
 	active = true
 	emit_signal("message_next")
 
@@ -73,7 +70,7 @@ func skip_message():
 	visible_ratio = 1
 
 func _parse_custom_tags(str:String)->Array:
-	var result = []
+	var result = [""]
 	var inside_tag = false
 	var current_pos = 0
 	var inside_tag_name = false
@@ -90,6 +87,8 @@ func _parse_custom_tags(str:String)->Array:
 						"name":current_tag, 
 						"pos": current_pos,
 						"value":current_tag_value} )
+				else:
+					push_error("Malformed bbcode tag '" + current_tag + "' in message " + str(message_id) + ". Please be sure to use square brackets only for valid bbcode tags, otherwise bugs may occur")
 				
 				current_tag = ""
 				current_tag_value = ""
@@ -113,6 +112,7 @@ func _parse_custom_tags(str:String)->Array:
 			inside_tag_name = true
 			continue
 		
+		result[0] += char
 		current_pos+=1
 	
 	return result

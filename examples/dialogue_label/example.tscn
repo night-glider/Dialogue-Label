@@ -136,7 +136,7 @@ I support custom tags:
 scroll_active = false
 scroll_following = true
 script = ExtResource("4_1xncv")
-messages = Array[String](["[snd 0][spd 0.3]///initialization basic test.com... [wait 60] ", "[inst 4]done[wait 60] ", "[b]Press ENTER to execute test...[/b]", "Test 1: [wait 60] Rendering [wait 60] 
+messages = Array[String](["[snd 0][spd 0.3]///initialization[wait 60][spd 10]basic test.com... [wait 60] ", "[inst 4]done[wait 60] ", "[b]Press ENTER to execute test...[/b]", "Test 1: [wait 60] Rendering [wait 60] 
 
 We have recieved image file from [inst 10][b]//username:[/b]tester
 Our REC system must render image information with ease
