@@ -7,6 +7,6 @@
 # Only include the addons folder when downloading from the Asset Library.
 /**        export-ignore
 /addons    !export-ignore
-/example   !export-ignore
+/examples   !export-ignore
 /addons/** !export-ignore
-/example/**   !export-ignore
+/examples/**   !export-ignore
