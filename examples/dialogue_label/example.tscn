@@ -1,11 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://bng50i7qea71q"]
+[gd_scene load_steps=12 format=3 uid="uid://l2twpv4bpg3b"]
 
-[ext_resource type="Script" path="res://example/example.gd" id="1_3275u"]
-[ext_resource type="FontFile" uid="uid://b8gr7203824nv" path="res://example/Disket-Mono-Regular.ttf" id="2_jabba"]
-[ext_resource type="Script" path="res://addons/dialogue_label/src/DialogueLabel.gd" id="2_tg4u7"]
-[ext_resource type="FontFile" uid="uid://c0umsxoxgkbdb" path="res://example/Disket-Mono-Bold.ttf" id="3_s50rr"]
-[ext_resource type="AudioStream" uid="uid://bbdomg6eojiah" path="res://example/click1.wav" id="5_uesmh"]
-[ext_resource type="AudioStream" uid="uid://qmtaq304uq1e" path="res://example/click2.wav" id="6_hj3s0"]
+[ext_resource type="Script" path="res://examples/dialogue_label/example.gd" id="1_5feym"]
+[ext_resource type="FontFile" uid="uid://b8gr7203824nv" path="res://examples/dialogue_label/Disket-Mono-Regular.ttf" id="2_o7lvo"]
+[ext_resource type="FontFile" uid="uid://c0umsxoxgkbdb" path="res://examples/dialogue_label/Disket-Mono-Bold.ttf" id="3_2hbp0"]
+[ext_resource type="Script" path="res://addons/dialogue_label/src/DialogueLabel.gd" id="4_1xncv"]
+[ext_resource type="AudioStream" uid="uid://bbdomg6eojiah" path="res://examples/dialogue_label/click1.wav" id="5_th2w5"]
+[ext_resource type="AudioStream" uid="uid://qmtaq304uq1e" path="res://examples/dialogue_label/click2.wav" id="6_dbotk"]
 
 [sub_resource type="Animation" id="Animation_v07il"]
 length = 0.001
@@ -96,7 +96,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_3275u")
+script = ExtResource("1_5feym")
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
@@ -123,9 +123,9 @@ offset_right = -20.0
 offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/normal_font = ExtResource("2_jabba")
-theme_override_fonts/bold_font = ExtResource("3_s50rr")
-theme_override_fonts/mono_font = ExtResource("2_jabba")
+theme_override_fonts/normal_font = ExtResource("2_o7lvo")
+theme_override_fonts/bold_font = ExtResource("3_2hbp0")
+theme_override_fonts/mono_font = ExtResource("2_o7lvo")
 text = "Hello! i am a simple RichTextLabel extension for displaying dialogues!
 
 I support custom tags:
@@ -135,7 +135,7 @@ I support custom tags:
 [wait 60] - delay for 60 frames"
 scroll_active = false
 scroll_following = true
-script = ExtResource("2_tg4u7")
+script = ExtResource("4_1xncv")
 messages = Array[String](["[snd 0][spd 0.3]///initialization basic test.com... [wait 60] ", "[inst 4]done[wait 60] ", "[b]Press ENTER to execute test...[/b]", "Test 1: [wait 60] Rendering [wait 60] 
 
 We have recieved image file from [inst 10][b]//username:[/b]tester
@@ -297,7 +297,7 @@ intiallization...
 
 [wait 120] 
  ", "[b]pass[/b] [wait 360] ", "///tests were completed successfully[wait 180] ", "[b]Press ENTER to shut down...[/b]"])
-sound_files = Array[AudioStream]([ExtResource("5_uesmh"), ExtResource("6_hj3s0")])
+sound_files = Array[AudioStream]([ExtResource("5_th2w5"), ExtResource("6_dbotk")])
 
 [connection signal="dialogue_ended" from="Dialogue" to="." method="onDialogueEnded"]
 [connection signal="message_finished" from="Dialogue" to="." method="onMessageFinished"]
